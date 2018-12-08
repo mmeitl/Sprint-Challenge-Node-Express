@@ -3,6 +3,9 @@
   "version": "y",
   "description": "y",
   "main": "y",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
   "repository": "y",
   "author": "y",
   "license": "y",

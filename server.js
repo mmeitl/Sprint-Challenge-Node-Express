@@ -5,7 +5,7 @@ const server = express(); // creates the server
 
 // handle requests to the root of the api, the / route
 server.get('/', (req, res) => {
-  res.send('Hello from Express');
+  res.send(`Hello from Express on ${PORT}`);
 });
 
 // watch for connections on port 5000
