@@ -63,6 +63,17 @@ const router = express.Router();
   
   })
 
+  router.delete(`/:actionId`, (req,res) => {
+    const {actionId} = req.params
+    actions.remove(actionId)
+      .then(() => {
+        actions.get()
+          .then(actions => {
+            res.json(actions)
+        })
+    })
+ })
+
 
 
   module.exports = router;

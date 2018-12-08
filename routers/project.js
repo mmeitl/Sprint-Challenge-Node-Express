@@ -76,6 +76,17 @@ const router = express.Router();
 
 })  
 
+router.delete(`/:projectId`, (req,res) => {
+    const {projectId} = req.params
+    projects.remove(projectId)
+      .then(() => {
+        projects.get()
+          .then(projects => {
+            res.json(projects)
+        })
+    })
+ })
+
 
 
   module.exports = router;
