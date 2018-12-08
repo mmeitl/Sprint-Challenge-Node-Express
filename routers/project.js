@@ -85,8 +85,32 @@ router.delete(`/:projectId`, (req,res) => {
             res.json(projects)
         })
     })
+
+    .catch(err => {
+        res
+          .status(500)
+          .json({ error: "The project could not be deleted." });
+    });       
  })
 
+
+ router.put(`/:projectId`, (req,res) => {
+    const {projectId} = req.params
+    const {name, description, completed} = req.body
+    projects.update(projectId, {name, description,completed})
+      .then(() => {
+        projects.get()
+          .then(projects => {
+            res.json(projects)
+        })
+    })
+
+    .catch(err => {
+        res
+          .status(500)
+          .json({ error: "The project could not be updated." });
+    });       
+})
 
 
   module.exports = router;

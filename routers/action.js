@@ -72,8 +72,34 @@ const router = express.Router();
             res.json(actions)
         })
     })
+
+    .catch(err => {
+        res
+          .status(500)
+          .json({ error: "The action could not be deleted" });
+    });     
+    
  })
 
+
+ router.put(`/:actionId`, (req,res) => {
+    const {actionId} = req.params
+    const {project_id, description, notes, completed} = req.body;
+    actions.update(actionId, {project_id, description, notes, completed})
+      .then(() =>{
+        actions.get()
+          .then(actions => {
+            res.json(actions)
+        })
+    })
+    
+    .catch(err => {
+        res
+          .status(500)
+          .json({ error: "The action could not be updated." });
+    });     
+    
+})
 
 
   module.exports = router;
